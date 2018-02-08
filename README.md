@@ -1,6 +1,6 @@
-## CodeIgniter3.1-starter4
+## C4711-Assn1
 
-This project can be used as a starter for a webapp built with CodeIgniter 3.1.
+This project is forked from jedi-academy/CodeIgniter3.1-starter4 as a starter for a webapp built with CodeIgniter 3.1.
 
 This starter builds on [CodeIgniter3.1-starter3](https://github.com/jedi-academy/CodeIgniter3.1-starter3),
 adding an entity model and enhancing the collection models to use it.
