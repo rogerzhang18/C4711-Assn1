@@ -20,10 +20,10 @@
                 <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                     <li><a href="/homepage">Homepage</a></li>
-        			<li><a href="/equipments">Equipments</a></li>
-        			<li><a href="/history">History</a></li>
-        			<li><a href="/assembly">Assembly</a></li>
-        		    <li><a href="/about">About</a></li>
+                    <li><a href="/#">Equipments</a></li>
+                    <li><a href="/history">History</a></li>
+                    <li><a href="/assembly">Assembly</a></li>
+                    <li><a href="/about">About</a></li>
                   </ul>
                   
                 </div>
