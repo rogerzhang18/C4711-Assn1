@@ -4,13 +4,12 @@
 	<div>
 		<summary>Premade sets</summary>
 		<select>
-		  <option value="black">car</option>
-		  <option value="white">car</option>
-		  <option value="asian">Chinese</option>
-		  <option value="brunette">car</option>
+		  <option value="witch">necromancer</option>
+		  <option value="templar">dragon mage</option>
+		  <option value="shadow">thief</option>
 		</select>
 	</div>
-	<img src="/assets/img/black-man-hi.png" default="person">
+	<img src="/assets/img/background.png" alt="person">
 
 	<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 
