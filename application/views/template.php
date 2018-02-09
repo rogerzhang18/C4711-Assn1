@@ -29,9 +29,9 @@
                 </div>
               </div>
             </nav>
-        <div id="container">
-			{content}
-			<p class="footer">Path of Exile by Team Recoil</p>
-        </div>
+            <div id="container">
+                            {content}
+                            <p class="footer">Path of Exile by Team Recoil</p>
+            </div>
 	</body>
 </html>
