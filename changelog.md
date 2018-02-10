@@ -8,6 +8,16 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+
+## [0.0.6] - 2018-02-10
+### Added
+- 
+
+### Changed
+- Modified content for about page
+- Fixed css style for dropdown menu item for Equipments
+
+
 ## [0.0.5] - 2018-02-09
 ### Added
 - CSV file made for all items, with made up stats vaguely based on the 3 loadouts 
