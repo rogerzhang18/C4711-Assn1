@@ -21,7 +21,7 @@
  	{
  		$this->data['pagetitle'] = 'Equipments build';
  		$this->data['pagebody'] = 'assembly';
- 
+            
  		$parts = array();
  
  		$source = $this->equipments->all();

@@ -11,11 +11,13 @@ Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdo
 
 ## [0.0.6] - 2018-02-10
 ### Added
-- 
+- assetsmenu.php in models which extends CSV_Model
 
 ### Changed
 - Modified content for about page
 - Fixed css style for dropdown menu item for Equipments
+- Moved assets.csv to [project root]/data/
+- Inserted a new column 'id' in assets.csv as first column
 
 
 ## [0.0.5] - 2018-02-09
