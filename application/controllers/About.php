@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends Application
+class About extends Application
 {
 
 	/**
@@ -19,8 +19,8 @@ class Welcome extends Application
 	 */
 	public function index()
 	{
-		$this->data['pagebody'] = 'welcome_message';
+                $this->data['pagetitle'] = 'Path of Exile - About';
+		$this->data['pagebody'] = 'about';
 		$this->render(); 
 	}
-
 }
