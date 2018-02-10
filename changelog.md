@@ -8,13 +8,23 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
- ## [0.0.4] - 2018-02-09
- ### Added
- - Equipment and preset render
- - Equipment/preset controller and data array
+## [0.0.5] - 2018-02-09
+### Added
+- CSV file made for all items, with made up stats vaguely based on the 3 loadouts 
 
- ### Updated
- - changelog
+### Changed
+- All weapons are now under generic category "weapon"
+
+### Removed
+- All shields & quivers
+
+## [0.0.4] - 2018-02-09
+### Added
+- Equipment and preset render
+- Equipment/preset controller and data array
+
+### Updated
+- changelog
 
 ## [0.0.3] - 2018-02-09
 ### Added
