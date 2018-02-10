@@ -58,6 +58,7 @@ p.footer {
 	margin: 5%;
 	border: 1px solid #D0D0D0;
 	box-shadow: 0 0 8px #D0D0D0;
+        padding: 55px;
 }
 
 #homepage-title{
@@ -72,12 +73,22 @@ p.footer {
   display: block!important;
 }
 
-.navbar-nav>li, .navbar-nav {
+.navbar-nav>li, .navbar-nav, .navbar-nav>li>ul {
   float: left !important;
 }
 
 .navbar-nav.navbar-right:last-child {
   margin-right: -15px !important;
+}
+
+ul ul {
+    padding: 10px;
+    list-style-type: none;
+    display: none;
+}
+
+li:hover ul {
+    display: inline-block;
 }
 
 .navbar-right {

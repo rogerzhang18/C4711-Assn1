@@ -20,7 +20,12 @@
                 <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                     <li><a href="/homepage">Homepage</a></li>
-                    <li><a href="/#">Equipments</a></li>
+                    <li><a href="">Equipments</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a role="menuitem" href="/presetscontroller">Presets</a></li>
+                            <li><a role="menuitem" href="/equipmentscontroller">Equipments</a></li>
+                        </ul>
+                    </li>
                     <li><a href="/history">History</a></li>
                     <li><a href="/assembly">Assembly</a></li>
                     <li><a href="/about">About</a></li>
