@@ -6,8 +6,9 @@
  * and open the template in the editor.
  */
 
-class Assetsmenu extends CSV_Model {
-  function __construct() {
-    parent::__construct('../data/assets.csv','id');
+class AssetsCsv extends CSV_Model {
+  function __construct()
+  {
+      parent::__construct('../data/assets.csv','id');
   }
 }

@@ -11,13 +11,17 @@ Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdo
 
 ## [0.0.6] - 2018-02-10
 ### Added
-- assetsmenu.php in models which extends CSV_Model
+- Added assetscsv.php in models which extends CSV_Model
+- Added presetscsv.php in models which extends CSV_Model
+- Added presets.csv in data folder
+- Routes link to make each category links to corresponding page
 
 ### Changed
 - Modified content for about page
 - Fixed css style for dropdown menu item for Equipments
 - Moved assets.csv to [project root]/data/
 - Inserted a new column 'id' in assets.csv as first column
+- Modified presets view and equipments view so now it grabs img info from csv file
 
 
 ## [0.0.5] - 2018-02-09
