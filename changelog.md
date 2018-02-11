@@ -8,6 +8,14 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+ ## [0.0.7] - 2018-02-11
+ ### Added
+ - presets dropdown on the homepage
+ - presets can now be populated per choice
+
+ ### Updated
+ - names for the preset image
+ - changelog
 
 ## [0.0.6] - 2018-02-10
 ### Added
