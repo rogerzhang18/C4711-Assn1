@@ -1,4 +1,4 @@
-id,Name,Category,str,dex,int
+id,name,category,str,dex,int
 am0,amulet_0,amulet,0,0,3
 am1,amulet_1,amulet,0,1,2
 am2,amulet_2,amulet,1,0,2
