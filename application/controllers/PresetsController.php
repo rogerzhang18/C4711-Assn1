@@ -25,18 +25,6 @@
  	{
  		$this->data['pagetitle'] = 'Equipments presets';
  		$this->data['pagebody'] = 'presets';
-                /*
- 		$parts = array();
- 
- 		$source = $this->presets->all();
- 		foreach ($source as $record)
- 		{
- 			$parts[] = array('pre_code' => $record['pre_code']);
- 		}
- 		$this->data['parts'] = $parts;
- 		$this->render();
-                
-                */
                 
                 $parts = $this->presetscsv->all();
                 $this->data['parts'] = $parts;
