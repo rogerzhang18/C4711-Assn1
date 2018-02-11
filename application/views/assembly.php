@@ -5,7 +5,7 @@
     </div>
     <div class="row">
  	{parts}
- 		<div class="col-xs-4"><img class="img-responsive" src="/assets/img/{equip_code}.png" title="{equip_id}"></div>
+ 		<div class="col-xs-4"><img class="img-responsive" src="/assets/img/{name}.png" title="{name}"></div>
  	{/parts}
     </div> 
 </div>
