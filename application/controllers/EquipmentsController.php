@@ -4,7 +4,7 @@
  
  class EquipmentsController extends Application
  {
-        function __construct()
+    function __construct()
 	{
             parent::__construct();
             $this->load->model('assetscsv');
@@ -40,9 +40,9 @@
  		$this->render();
              */
                 
-                $parts = $this->assetscsv->all();
-                $this->data['parts'] = $parts;
-                $this->render();
+        $parts = $this->assetscsv->all();
+        $this->data['parts'] = $parts;
+        $this->render();
  	}
         
         public function category($key)
