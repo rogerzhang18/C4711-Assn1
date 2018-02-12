@@ -8,14 +8,30 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
- ## [0.0.7] - 2018-02-11
- ### Added
- - presets dropdown on the homepage
- - presets can now be populated per choice
+## [0.0.9] - 2018-02-11
+### Updated
+- changelog
+- Replaced glove_4.png with glove_3.png
+- Removed test link to presets
 
- ### Updated
- - names for the preset image
- - changelog
+## [0.0.8] - 2018-02-11
+### Added
+- Code comments for each controller and model
+
+### Updated
+- changelog
+
+### Removed
+- History controller and history view
+
+## [0.0.7] - 2018-02-11
+### Added
+- presets dropdown on the homepage
+- presets can now be populated per choice
+
+### Updated
+- names for the preset image
+- changelog
 
 ## [0.0.6] - 2018-02-10
 ### Added

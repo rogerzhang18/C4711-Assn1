@@ -26,8 +26,7 @@
                     <li><a href="/homepage">Homepage</a></li>
                     <li><a href="">Equipments</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a role="menuitem" href="/presetscontroller">Presets</a></li>
-                            <li><a role="menuitem" href="/equipmentscontroller">All Equipments</a></li>
+                            <li><a role="menuitem" href="/EquipmentsController">All Equipments</a></li>
                             <li><a role="menuitem" href="/category/amulet">Amulet</a></li>
                             <li><a role="menuitem" href="/category/belt">Belt</a></li>
                             <li><a role="menuitem" href="/category/boot">Boots</a></li>
@@ -38,7 +37,6 @@
                             <li><a role="menuitem" href="/category/weapon">Weapon</a></li>
                         </ul>
                     </li>
-                    <li><a href="/history">History</a></li>
                     <li><a href="/assembly">Assembly</a></li>
                     <li><a href="/about">About</a></li>
                   </ul>

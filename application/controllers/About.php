@@ -6,16 +6,9 @@ class About extends Application
 {
 
 	/**
-	 * Index Page for this controller.
+	 * Index Page for About controller.
 	 *
-	 * Maps to the following URL
-	 * 		http://example.com/
-	 * 	- or -
-	 * 		http://example.com/welcome/index
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 * This display the page title and sets page body to the about.php view
 	 */
 	public function index()
 	{
