@@ -12,7 +12,7 @@
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Assetscsv');
+        $this->load->model('AssetsCsv');
         $this->data['pagetitle'] = 'Equipments build';
         $this->data['pagebody'] = 'assembly';
 	  }
@@ -30,21 +30,8 @@
  	 */
  	public function index()
  	{
- 		$this->data['pagetitle'] = 'Equipments build';
- 		$this->data['pagebody'] = 'assembly';
-            
- 		$parts = array();
- 
- 		$source = $this->equipments->all();
- 		foreach ($source as $record)
- 		{
- 			$parts[] = array('equip_code' => $record['equip_code']);
- 		}
- 		$this->data['parts'] = $parts;
- 		$this->render();
-             */
         $this->data['page_category'] = " all-equipments";        
-        $items = $this->Assetscsv->all();
+        $items = $this->AssetsCsv->all();
         $this->data['items'] = $items;
         $this->render();
  	}
@@ -52,7 +39,8 @@
     public function category($key)
     {
         $this->data['page_category'] = " ".$key;        
-        $items = $this->Assetscsv->some('category', $key);
+        $items = $this->AssetsCsv->some('category', $key);
         $this->data['items'] = $items;
         $this->render();
     }
+}
