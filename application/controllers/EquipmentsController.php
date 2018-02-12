@@ -4,13 +4,18 @@
  
  class EquipmentsController extends Application
  {
-	function __construct()
-	{
+    /**
+     * Constructor for EquipmentsController.
+     * 
+     * It loads the assetscsv model, and sets the page title and page body.
+     */
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('Assetscsv');
         $this->data['pagetitle'] = 'Equipments build';
         $this->data['pagebody'] = 'assembly';
-	}
+	  }
  	/**
  	 * Index Page for this controller.
  	 *
@@ -25,7 +30,6 @@
  	 */
  	public function index()
  	{
-            /*
  		$this->data['pagetitle'] = 'Equipments build';
  		$this->data['pagebody'] = 'assembly';
             
@@ -52,4 +56,3 @@
         $this->data['items'] = $items;
         $this->render();
     }
- }

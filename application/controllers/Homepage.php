@@ -4,6 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Homepage extends Application
 {
+    /**
+     * Constructor for Homepage controller.
+     * 
+     * It loads the presetscsv model.
+     */
     function __construct()
     {
         parent::__construct();
@@ -11,16 +16,9 @@ class Homepage extends Application
     }
 
     /**
-     * Index Page for this controller.
+     * Index Page for Homepage controller.
      *
-     * Maps to the following URL
-     * 		http://example.com/
-     * 	- or -
-     * 		http://example.com/welcome/index
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /welcome/<method_name>
-     * @see https://codeigniter.com/user_guide/general/urls.html
+     * It grabs all the data from presetscsv and renders it on specified view.
      */
     public function index()
     {
@@ -31,5 +29,4 @@ class Homepage extends Application
             $this->data['parts'] = $parts;
             $this->render(); 
     }
-
 }
