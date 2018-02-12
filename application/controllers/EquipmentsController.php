@@ -1,9 +1,8 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
  
- defined('BASEPATH') OR exit('No direct script access allowed');
- 
- class EquipmentsController extends Application
- {
+class EquipmentsController extends Application
+{
     /**
      * Constructor for EquipmentsController.
      * 
@@ -34,7 +33,7 @@
         $items = $this->AssetsCsv->all();
         $this->data['items'] = $items;
         $this->render();
- 	}
+    }
         
     public function category($key)
     {
