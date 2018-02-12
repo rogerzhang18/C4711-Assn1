@@ -7,7 +7,7 @@
         function __construct()
 	{
             parent::__construct();
-            $this->load->model('PresetsCsv');
+            $this->load->model('presetscsv');
 	}
  	/**
  	 * Index Page for this controller.
@@ -23,11 +23,11 @@
  	 */
  	public function index()
  	{
- 		$this->data['pagetitle'] = 'Equipments presets';
- 		$this->data['pagebody'] = 'presets';
+            $this->data['pagetitle'] = 'Equipments presets';
+            $this->data['pagebody'] = 'presets';
                 
-        $parts = $this->PresetsCsv->all();
-        $this->data['parts'] = $parts;
-        $this->render();
+            $parts = $this->presetscsv->all();
+            $this->data['parts'] = $parts;
+            $this->render();
  	}
  }

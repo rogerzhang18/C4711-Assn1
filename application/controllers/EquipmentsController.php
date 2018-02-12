@@ -11,7 +11,7 @@ class EquipmentsController extends Application
     function __construct()
     {
         parent::__construct();
-        $this->load->model('AssetsCsv');
+        $this->load->model('assetscsv');
         $this->data['pagetitle'] = 'Equipments build';
         $this->data['pagebody'] = 'assembly';
 	  }
@@ -30,7 +30,7 @@ class EquipmentsController extends Application
  	public function index()
  	{
         $this->data['page_category'] = " all-equipments";        
-        $items = $this->AssetsCsv->all();
+        $items = $this->assetscsv->all();
         $this->data['items'] = $items;
         $this->render();
     }
@@ -38,7 +38,7 @@ class EquipmentsController extends Application
     public function category($key)
     {
         $this->data['page_category'] = " ".$key;        
-        $items = $this->AssetsCsv->some('category', $key);
+        $items = $this->assetscsv->some('category', $key);
         $this->data['items'] = $items;
         $this->render();
     }
