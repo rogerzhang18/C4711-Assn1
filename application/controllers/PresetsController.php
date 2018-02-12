@@ -26,9 +26,8 @@
  		$this->data['pagetitle'] = 'Equipments presets';
  		$this->data['pagebody'] = 'presets';
                 
-                $parts = $this->PresetsCsv->all();
-                $this->data['parts'] = $parts;
-                
-                $this->render();
+        $parts = $this->PresetsCsv->all();
+        $this->data['parts'] = $parts;
+        $this->render();
  	}
  }
