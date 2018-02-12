@@ -8,6 +8,12 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+## [0.0.9] - 2018-02-11
+### Updated
+- changelog
+- Replaced glove_4.png with glove_3.png
+- Removed test link to presets
+
 ## [0.0.8] - 2018-02-11
 ### Added
 - Code comments for each controller and model
