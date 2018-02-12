@@ -26,15 +26,15 @@
 
  		$this->data['pagetitle'] = 'Equipments presets';
  		$this->data['pagebody'] = 'presets';
-                
-        $parts = $this->presetscsv->all();
-        $this->data['parts'] = $parts;
-        $this->render();
+
+    $parts = $this->presetscsv->all();
+    $this->data['parts'] = $parts;
+    $this->render();
  	}
 
-    public function loadPreset($postVal) {
-        $img = $this->presetscsv->some('name', $postVal);
-        $this->data['preset'] = $img;
-    }
+  public function loadPreset($postVal) {
+      $img = $this->presetscsv->some('name', $postVal);
+      $this->data['preset'] = $img;
+  }
 
  }
