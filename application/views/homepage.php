@@ -1,7 +1,10 @@
 <script type ='text/javascript'>
     function replaceImage(e) {
         if (e.selectedIndex < 3)
+        {
+        	document.getElementById("base-image").src = "./assets/img/background.png";
         	overlayImages(e.selectedIndex);
+        }
         else
         {
 	    	var target = document.getElementById("paste_stuff_here");
@@ -41,7 +44,6 @@
         	newImg.setAttribute("id", base[i]);
         	newImg.setAttribute("src", "./assets/img/" + curr[i] + ".png");
     		target.appendChild(newImg);
-
     	}
     }
 </script>
