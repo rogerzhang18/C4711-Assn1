@@ -39,7 +39,7 @@
  		$this->data['parts'] = $parts;
  		$this->render();
              */
-        $this->data['category'] = " all-equipments";        
+        $this->data['page_category'] = " all-equipments";        
         $items = $this->assetscsv->all();
         $this->data['items'] = $items;
         $this->render();
@@ -47,7 +47,7 @@
         
     public function category($key)
     {
-        $this->data['category'] = " ".$key;        
+        $this->data['page_category'] = " ".$key;        
         $items = $this->assetscsv->some('category', $key);
         $this->data['items'] = $items;
         $this->render();
