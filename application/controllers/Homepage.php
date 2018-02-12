@@ -12,7 +12,7 @@ class Homepage extends Application
     function __construct()
     {
         parent::__construct();
-        $this->load->model('PresetsCsv');
+        $this->load->model('presetscsv');
     }
 
     /**
@@ -22,11 +22,11 @@ class Homepage extends Application
      */
     public function index()
     {
-            $this->data['pagetitle'] = 'Path of Exile - Home';
-            $this->data['pagebody'] = 'homepage';
+        $this->data['pagetitle'] = 'Path of Exile - Home';
+        $this->data['pagebody'] = 'homepage';
 
-            $parts = $this->PresetsCsv->all();
-            $this->data['parts'] = $parts;
-            $this->render(); 
+        $parts = $this->presetscsv->all();
+        $this->data['parts'] = $parts;
+        $this->render(); 
     }
 }
