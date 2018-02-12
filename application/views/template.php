@@ -8,8 +8,11 @@
         <link rel="stylesheet" type="text/css" href="/assets/css/default.css"/>
         <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
-        <script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-        <script src="/assets/js/presetHandler.js" type="text/javascript"></script>y
+        <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap3.3.7.min.css"/>
+        <!-- <script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script> -->
+        <script src="/assets/js/jquery3.3.7.min.js" type="text/javascript"></script>
+        <script src="/assets/js/bootstrap3.3.7.min.js" type="text/javascript"></script>
+
         </head>
 	<body>
             <nav class="navbar navbar-default navbar-fixed-top">
