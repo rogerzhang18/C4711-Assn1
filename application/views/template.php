@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css"/>
         <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap3.3.7.min.css"/>
+        <script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
         <script src="/assets/js/jquery3.3.7.min.js" type="text/javascript"></script>
         <script src="/assets/js/bootstrap3.3.7.min.js" type="text/javascript"></script>
 
@@ -25,6 +26,7 @@
                     <li><a href="/homepage">Homepage</a></li>
                     <li><a href="">Equipments</a>
                         <ul class="dropdown-menu" role="menu">
+                            <li><a role="menuitem" href="/presetscontroller">Presets</a></li>
                             <li><a role="menuitem" href="/equipmentscontroller">All Equipments</a></li>
                             <li><a role="menuitem" href="/category/amulet">Amulet</a></li>
                             <li><a role="menuitem" href="/category/belt">Belt</a></li>
