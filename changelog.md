@@ -8,6 +8,14 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+## [0.0.7] - 2018-02-11
+### Added
+- presetHandler.js, controls the drop down bc i couldnt get ajax working with PHP classes
+- custom.css, doesnt seem to be compatible with bootstrap, will fix that later
+
+### Changed
+- moved preset images to homepage, as required
+- Routes link to index so page updates every time down 
 
 ## [0.0.6] - 2018-02-10
 ### Added

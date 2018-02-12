@@ -4,12 +4,12 @@
  
  class EquipmentsController extends Application
  {
-        function __construct()
+	function __construct()
 	{
-            parent::__construct();
-            $this->load->model('assetscsv');
-            $this->data['pagetitle'] = 'Equipments build';
-            $this->data['pagebody'] = 'assembly';
+        parent::__construct();
+        $this->load->model('assetscsv');
+        $this->data['pagetitle'] = 'Equipments build';
+        $this->data['pagebody'] = 'assembly';
 	}
  	/**
  	 * Index Page for this controller.
@@ -39,16 +39,17 @@
  		$this->data['parts'] = $parts;
  		$this->render();
              */
-                
-                $parts = $this->assetscsv->all();
-                $this->data['parts'] = $parts;
-                $this->render();
+        $this->data['category'] = " all-equipments";        
+        $items = $this->assetscsv->all();
+        $this->data['items'] = $items;
+        $this->render();
  	}
         
-        public function category($key)
-        {
-            $parts = $this->assetscsv->some('category', $key);
-            $this->data['parts'] = $parts;
-            $this->render();
-        }
+    public function category($key)
+    {
+        $this->data['category'] = " ".$key;        
+        $items = $this->assetscsv->some('category', $key);
+        $this->data['items'] = $items;
+        $this->render();
+    }
  }
