@@ -8,6 +8,30 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+## [0.0.7] - 2018-02-11
+### Added
+- presetHandler.js, controls the drop down bc i couldnt get ajax working with PHP classes
+- custom.css, doesnt seem to be compatible with bootstrap, will fix that later
+
+### Changed
+- moved preset images to homepage, as required
+- Routes link to index so page updates every time down 
+
+## [0.0.6] - 2018-02-10
+### Added
+- Added assetscsv.php in models which extends CSV_Model
+- Added presetscsv.php in models which extends CSV_Model
+- Added presets.csv in data folder
+- Routes link to make each category links to corresponding page
+
+### Changed
+- Modified content for about page
+- Fixed css style for dropdown menu item for Equipments
+- Moved assets.csv to [project root]/data/
+- Inserted a new column 'id' in assets.csv as first column
+- Modified presets view and equipments view so now it grabs img info from csv file
+
+
 ## [0.0.5] - 2018-02-09
 ### Added
 - CSV file made for all items, with made up stats vaguely based on the 3 loadouts 
