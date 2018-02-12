@@ -30,19 +30,6 @@
  	 */
  	public function index()
  	{
- 		$this->data['pagetitle'] = 'Equipments build';
- 		$this->data['pagebody'] = 'assembly';
-            
- 		$parts = array();
- 
- 		$source = $this->equipments->all();
- 		foreach ($source as $record)
- 		{
- 			$parts[] = array('equip_code' => $record['equip_code']);
- 		}
- 		$this->data['parts'] = $parts;
- 		$this->render();
-             */
         $this->data['page_category'] = " all-equipments";        
         $items = $this->AssetsCsv->all();
         $this->data['items'] = $items;
@@ -56,3 +43,4 @@
         $this->data['items'] = $items;
         $this->render();
     }
+}
