@@ -7,7 +7,7 @@
         function __construct()
 	{
             parent::__construct();
-            $this->load->model('Presetscsv');
+            $this->load->model('PresetsCsv');
 	}
  	/**
  	 * Index Page for this controller.
@@ -26,7 +26,7 @@
  		$this->data['pagetitle'] = 'Equipments presets';
  		$this->data['pagebody'] = 'presets';
                 
-                $parts = $this->Presetscsv->all();
+                $parts = $this->PresetsCsv->all();
                 $this->data['parts'] = $parts;
                 
                 $this->render();
