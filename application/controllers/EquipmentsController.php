@@ -11,26 +11,26 @@ class EquipmentsController extends Application
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Assetscsv');
+        $this->load->model('AssetsCsv');
         $this->data['pagetitle'] = 'Equipments build';
         $this->data['pagebody'] = 'assembly';
-    }
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/
-     * 	- or -
-     * 		http://example.com/welcome/index
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /welcome/<method_name>
-     * @see https://codeigniter.com/user_guide/general/urls.html
-     */
-    public function index()
-    {
+	  }
+ 	/**
+ 	 * Index Page for this controller.
+ 	 *
+ 	 * Maps to the following URL
+ 	 * 		http://example.com/
+ 	 * 	- or -
+ 	 * 		http://example.com/welcome/index
+ 	 *
+ 	 * So any other public methods not prefixed with an underscore will
+ 	 * map to /welcome/<method_name>
+ 	 * @see https://codeigniter.com/user_guide/general/urls.html
+ 	 */
+ 	public function index()
+ 	{
         $this->data['page_category'] = " all-equipments";        
-        $items = $this->Assetscsv->all();
+        $items = $this->AssetsCsv->all();
         $this->data['items'] = $items;
         $this->render();
     }
@@ -38,7 +38,7 @@ class EquipmentsController extends Application
     public function category($key)
     {
         $this->data['page_category'] = " ".$key;        
-        $items = $this->Assetscsv->some('category', $key);
+        $items = $this->AssetsCsv->some('category', $key);
         $this->data['items'] = $items;
         $this->render();
     }

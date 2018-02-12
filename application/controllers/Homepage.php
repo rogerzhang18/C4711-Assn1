@@ -12,7 +12,7 @@ class Homepage extends Application
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Presetscsv');
+        $this->load->model('PresetsCsv');
     }
 
     /**
@@ -25,7 +25,7 @@ class Homepage extends Application
             $this->data['pagetitle'] = 'Path of Exile - Home';
             $this->data['pagebody'] = 'homepage';
 
-            $parts = $this->Presetscsv->all();
+            $parts = $this->PresetsCsv->all();
             $this->data['parts'] = $parts;
             $this->render(); 
     }
