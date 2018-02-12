@@ -4,10 +4,10 @@
  
  class PresetsController extends Application
  {
-        function __construct()
+    function __construct()
 	{
-            parent::__construct();
-            $this->load->model('presetscsv');
+        parent::__construct();
+        $this->load->model('presetscsv');
 	}
  	/**
  	 * Index Page for this controller.
@@ -23,12 +23,18 @@
  	 */
  	public function index()
  	{
+
  		$this->data['pagetitle'] = 'Equipments presets';
  		$this->data['pagebody'] = 'presets';
-                
-                $parts = $this->presetscsv->all();
-                $this->data['parts'] = $parts;
-                
-                $this->render();
+
+    $parts = $this->presetscsv->all();
+    $this->data['parts'] = $parts;
+    $this->render();
  	}
+
+  public function loadPreset($postVal) {
+      $img = $this->presetscsv->some('name', $postVal);
+      $this->data['preset'] = $img;
+  }
+
  }

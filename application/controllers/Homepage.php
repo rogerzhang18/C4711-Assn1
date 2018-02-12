@@ -9,7 +9,6 @@ class Homepage extends Application
         parent::__construct();
         $this->load->model('presetscsv');
     }
-
     /**
      * Index Page for this controller.
      *
@@ -32,4 +31,12 @@ class Homepage extends Application
             $this->render(); 
     }
 
+
+}
+
+//use this to debug
+function console_log( $data ){
+  echo '<script>';
+  echo 'console.log('. json_encode( $data ) .')';
+  echo '</script>';
 }
