@@ -11,6 +11,8 @@ Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdo
 ## [0.0.10] - 2018-02-11
 ### Added
 - Implemented Drag and drop items via vanilla JS
+- Can only drag and drop items into correct slots
+- Dragging in new item into slot replaces old one
 - Added categorized hardcoded inventory on homepage
 
 ## [0.0.9] - 2018-02-11
