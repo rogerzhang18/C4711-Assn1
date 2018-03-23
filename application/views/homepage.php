@@ -189,7 +189,8 @@
 						<button class="tabButton" onclick="openInventoryTab(event, 'bootTab')">Boots</button>
 						<button class="tabButton" onclick="openInventoryTab(event, 'ringTab')">Rings</button>
 						<button class="tabButton" onclick="openInventoryTab(event, 'amuletTab')">Amulets</button>
-						<button class="tabButton" onclick="openInventoryTab(event, 'weaponTab')">Amulets</button>
+						<button class="tabButton" onclick="openInventoryTab(event, 'beltTab')">Belts</button>
+						<button class="tabButton" onclick="openInventoryTab(event, 'weaponTab')">Weapons</button>
 					</div>
 
 					<!-- Tab content -->
