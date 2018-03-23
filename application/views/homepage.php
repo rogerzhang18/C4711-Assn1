@@ -1,4 +1,28 @@
 <script type ='text/javascript'>
+	function drag(target, event) {
+        event.dataTransfer.setData("itemID", target.id);
+        event.dataTransfer.setData("itemCategory", target.alt);
+    }
+
+    function drop(target, event) {
+        var itemID = event.dataTransfer.getData("itemID");
+        var itemCategory = event.dataTransfer.getData("itemCategory");
+        // only allow dropping if correct item
+        if (itemCategory.length > target.className.length)
+        	return;
+        var slotCategory = target.className.substring(0, itemCategory.length);
+        if (itemCategory != slotCategory)
+        	return;
+
+        var origImg = document.getElementById(itemID);
+        var copiedImg = origImg.cloneNode(true);
+        copiedImg.setAttribute("id", target.className);
+        target.innerHTML = "";
+        target.appendChild(copiedImg);
+        // prevent dragging from target
+        // document.getElementById(data).setAttribute("draggable", "false")
+    }
+
     function replaceImage(e) {
         if (e.selectedIndex < 3)
         {
@@ -56,48 +80,48 @@
 	#chest {
 		position: absolute;
 		top: 200px;
-		left: 250px; /*shared*/
+		left: 247px;
 	}
 
 	#helmet {
 		position: absolute;
 		top: 100px;
-		left: 250px;
+		left: 251px;
 	}
 
 	#ring_left {
 		position: absolute;
-		top: 250px;
-		left: 180px;
+		top: 251px;
+		left: 183px;
 	}
 	/*ring is 50x50, each slot is 50x50*/
 	#ring_right {
 		position: absolute;
-		top: 250px;
-		left: 370px;
+		top: 251px;
+		left: 368px;
 	}
 
 	#amulet {
 		position: absolute;
-		top: 190px;
-		left: 370px;
+		top: 193px;
+		left: 368px;
 	}
 
 	#belt {
 		position: absolute;
-		top: 350px;
-		left: 250px;
+		top: 360px;
+		left: 252px;
 	}
 
 	#glove {
 		position: absolute;
-		top: 310px;
-		left: 130px;
+		top: 312px;
+		left: 135px;
 	}
 
 	#boot {
 		position: absolute;
-		top: 310px;
+		top: 312px;
 		left: 370px;
 	}
 
@@ -110,7 +134,7 @@
 	#weapon_right {
 		position: absolute;
 		top: 110px;
-		left: 440px;
+		left: 438px;
 	}
 
 </style>
@@ -130,16 +154,38 @@
         		<img id="base-image" src="./assets/img/background.png" />
         		<div id="paste_stuff_here"/>
         		<!-- for testing only -->
-				<!-- <img id="chest" src="./assets/img/chest_0.png">
-				<img id="helmet" src="./assets/img/helmet_0.png">
-				<img id="ring_left" src="./assets/img/ring_5.png">
-				<img id="ring_right" src="./assets/img/ring_5.png">
-				<img id="amulet" src="./assets/img/amulet_0.png">
-				<img id="belt" src="./assets/img/belt_0.png">
-				<img id="glove" src="./assets/img/glove_0.png">
-				<img id="boot" src="./assets/img/boot_0.png">
-				<img id="weapon_left" src="./assets/img/weapon_0.png">
-				<img id="weapon_right" src="./assets/img/weapon_0.png"> -->
+				<div class="chest" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="chest" src="./assets/img/chest_slot.png" >
+				</div>	
+				<div class="helmet" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="helmet" src="./assets/img/helmet_slot.png">
+				</div>	
+				<div class="glove" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="glove" src="./assets/img/helmet_slot.png" >
+				</div>	
+				<div class="boot" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="boot" src="./assets/img/helmet_slot.png" >
+				</div>	
+				<div class="ring_left" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="ring_left" src="./assets/img/ring_slot.png">
+				</div>	
+				<div class="ring_right" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="ring_right" src="./assets/img/ring_slot.png">
+				</div>	
+				<div class="amulet" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="amulet" src="./assets/img/ring_slot.png">
+				</div>	
+				<div class="belt" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="belt" src="./assets/img/belt_slot.png"				>
+				</div>	
+				<div class="weapon_left" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="weapon_left" src="./assets/img/weapon_slot.png">
+				</div>	
+				<div class="weapon_right" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
+					<img id="weapon_right" src="./assets/img/weapon_slot.png">
+				</div>	
+				<img id="ring_0" alt="ring" src="./assets/img/ring_0.png" draggable="true" ondragstart="drag(this, event)">
+				<img id="chest_1" alt="chest" src="./assets/img/chest_1.png" draggable="true" ondragstart="drag(this, event)">
             </div>
             <p> This is a customized <strong>Path of Exile</strong> custom equipment build.</p>
             <p> The project consists of weapons and armors for the user to choose and build.</p>
