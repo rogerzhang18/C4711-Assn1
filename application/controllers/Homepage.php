@@ -27,9 +27,6 @@ class Homepage extends Application
 
         $parts = $this->PresetsCsv->all();
         $this->data['parts'] = $parts;
-        // $baseurl = base_url();
-        // $this->data['urlLink'] = array( $baseurl );
-
         $this->render(); 
     }
 }
