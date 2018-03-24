@@ -22,11 +22,14 @@ class Homepage extends Application
      */
     public function index()
     {
-            $this->data['pagetitle'] = 'Path of Exile - Home';
-            $this->data['pagebody'] = 'homepage';
+        $this->data['pagetitle'] = 'Path of Exile - Home';
+        $this->data['pagebody'] = 'homepage';
 
-            $parts = $this->PresetsCsv->all();
-            $this->data['parts'] = $parts;
-            $this->render(); 
+        $parts = $this->PresetsCsv->all();
+        $this->data['parts'] = $parts;
+        // $baseurl = base_url();
+        // $this->data['urlLink'] = array( $baseurl );
+
+        $this->render(); 
     }
 }

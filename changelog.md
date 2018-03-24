@@ -8,7 +8,17 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
-## [0.0.10] - 2018-02-11
+## [0.0.11] - 2018-03-24
+### Added
+- items.json, unused since EquipmentController can parse a json version from the csv models
+- Stats, adding / replacing equipped items now update stat box on the screen 
+
+### Changed
+- homepage no longer has hard-coded inventory, now dynamically loads using a json-fied version of csv models from 
+EquipmentController.php
+- fixed some styling issues with inventory 
+
+## [0.0.10] - 2018-03-23
 ### Added
 - Implemented Drag and drop items via vanilla JS
 - Can only drag and drop items into correct slots
