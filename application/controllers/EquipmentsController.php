@@ -37,6 +37,14 @@ class EquipmentsController extends Application
         
     public function category($key)
     {
+        if($key == "all")
+        {
+            $this->load->model('AssetsCsv');
+            $items = $this->AssetsCsv->all();
+            header("Content-type: application/json");
+            echo json_encode($items);
+            return;
+        }
         $this->data['page_category'] = " ".$key;        
         $items = $this->AssetsCsv->some('category', $key);
         $this->data['items'] = $items;
