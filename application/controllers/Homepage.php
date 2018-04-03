@@ -25,8 +25,8 @@ class Homepage extends Application
         $this->data['pagetitle'] = 'Path of Exile - Home';
         $this->data['pagebody'] = 'homepage';
 
-        $parts = $this->PresetsCsv->all();
-        $this->data['parts'] = $parts;
+        $presets = $this->PresetsCsv->all();
+        $this->data['presets'] = $presets;
         $this->render(); 
     }
 }

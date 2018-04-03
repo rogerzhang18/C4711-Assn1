@@ -50,8 +50,43 @@ function updateStats() {
 }
 
 /* The old presets function, now removed. */
-function replaceImage(e) {
-    
+function changePreset(event) {
+    var presetDropdown = document.getElementById("presetDropdown");
+	var presetId = presetDropdown.options[event.selectedIndex].id;
+	var presetAjaxSuccess = false;
+	$.getJSON("presets/" + presetId, function(data){
+		var items = {};
+        $.each(data[0], function(key, val)
+        {        	
+			if (key != "id" && key != "name" && val != ".")
+				items[key] = val;
+        });
+        $.each( items, function( key, val ) {
+			$.getJSON("singleItem/" + val, function(itemData){
+				var item = itemData[0];
+				// apparently jQuery can see key var even tho not passed in here
+				var oldItemRoot = document.querySelector("." + key);
+				var oldItem = oldItemRoot.firstElementChild;
+			    str -= parseInt(oldItem.getAttribute("data-str"));
+			    dex -= parseInt(oldItem.getAttribute("data-dex"));
+			    int -= parseInt(oldItem.getAttribute("data-int"));
+			    oldItemRoot.innerHTML = "";
+			    
+				var newItem = document.createElement("img");
+			    newItem.setAttribute("id", key);
+				newItem.setAttribute("src", "./assets/img/" + item.id + ".png");
+				newItem.setAttribute("data-str", item.str);
+				newItem.setAttribute("data-dex", item.dex);
+				newItem.setAttribute("data-int", item.int);
+
+			    str += parseInt(newItem.getAttribute("data-str"));
+			    dex += parseInt(newItem.getAttribute("data-dex"));
+			    int += parseInt(newItem.getAttribute("data-int"));
+			    oldItemRoot.appendChild(newItem);
+			    updateStats();
+			});
+		});
+    });
 }
 
 /* Load/Unloads the homepage inventory. */
@@ -61,20 +96,21 @@ function openInventoryTab(event, tabName) {
 
     // Get all elements with class="tabContent" and hide them
     tabContent = document.getElementsByClassName("tabContent");
-    for (var i = 0; i < tabContent.length; i++) {
+    for (var i = 0; i < tabContent.length; i++)
         tabContent[i].style.display = "none";
-    }
 
     tabButton = document.getElementsByClassName("tabButton");
-    for (var i = 0; i < tabButton.length; i++) {
+    for (var i = 0; i < tabButton.length; i++)
         tabButton[i].className = tabButton[i].className.replace(" active", "");
-    }
 
     document.getElementById(tabName).style.display = "block";
     event.currentTarget.className += " active";
 }
 
 $().ready(function() {
+	//dropdown is populated by php already
+
+	//populate inv
 	$.ajax({
 		url: "/category/all",
 		dataType: 'json',
@@ -82,7 +118,7 @@ $().ready(function() {
 			console.log( 'ERROR: ', data );
 		},
 		success: function( data ) {
-			console.log( 'SUCCESS: ' );
+			console.log( 'SUCCESS INV: ' );
 			$.each( data, function( key, val ) {
 				var item = document.createElement("img");
 				item.setAttribute("id", val.id);
@@ -97,6 +133,39 @@ $().ready(function() {
 				var tabName = val.category + "Tab";
 				var tab = document.getElementById(tabName);
 				tab.appendChild(item);		
+			});
+		}
+	});
+
+	//populate placeholder slots
+	$.ajax({
+		url: "/category/slots",
+		dataType: 'json',
+		error: function( data ) {
+			console.log( 'ERROR: ', data );
+		},
+		success: function( data ) {
+			console.log( 'SUCCESS SLOTS: ' );
+			$.each( data, function( key, val ) {
+				var slot = document.createElement("div");
+				slot.setAttribute("class", val.id);
+				slot.setAttribute("data-category", val.category);
+				slot.setAttribute("ondrop", "drop(this, event)");
+				slot.setAttribute("ondragenter", "return false");
+				slot.setAttribute("ondragover", "return false");
+
+				var placeholderItem = document.createElement("img");
+				placeholderItem.setAttribute("id", val.id);
+				placeholderItem.setAttribute("src", "./assets/img/" + val.name + ".png");
+				placeholderItem.setAttribute("data-str", val.str);
+				placeholderItem.setAttribute("data-dex", val.dex);
+				placeholderItem.setAttribute("data-int", val.int);
+
+				slot.appendChild(placeholderItem);		
+				// var appendImageRoot = document.querySelector(".");
+				var appendImageRoot = document.getElementById("slots");
+				appendImageRoot.appendChild(slot);
+				// var slot = document.querySelector(slotName);
 			});
 		}
 	});
@@ -216,12 +285,12 @@ $().ready(function() {
 		<h1 id="homepage-title">Welcome to Path of Exile custom mod!</h1>
 		<div class="homepage-content">
             <div id="preset-dropdown">
-            <select class="round" name="preset-dropdown" onchange="replaceImage(this);">
-                {parts}
-                  <option value={name}>{name}</option>
-                {/parts}
+            <select id="presetDropdown" class="round" onchange="changePreset(this);">
+                {presets}
+                  <option id={id} value={name}>{name}</option>
+                {/presets}
             </select>
-            </div>
+        	</div>
 			<div id="statsBox">
 				<div class="container">
 					<div class="row">					
@@ -242,36 +311,7 @@ $().ready(function() {
             <div class="imageWrapper">
             	
         		<img id="base-image" src="./assets/img/background.png" />
-				<div class="chest" data-category="chest" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="chest" src="./assets/img/chest_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="helmet" data-category="helmet" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="helmet" src="./assets/img/helmet_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="glove" data-category="glove" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="glove" src="./assets/img/helmet_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="boot" data-category="boot" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="boot" src="./assets/img/helmet_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="ring_left" data-category="ring" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="ring_left" src="./assets/img/ring_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="ring_right" data-category="ring" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="ring_right" src="./assets/img/ring_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="amulet" data-category="amulet" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="amulet" src="./assets/img/ring_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="belt" data-category="belt" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="belt" src="./assets/img/belt_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="weapon_left" data-category="weapon" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="weapon_left" src="./assets/img/weapon_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="weapon_right" data-category="weapon" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="weapon_right" src="./assets/img/weapon_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
+        		<div id="slots"/>
 	            <div id="inventoryBox" >
 	            	<h3>Inventory</h3>
 	            	<hr>

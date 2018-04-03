@@ -39,8 +39,15 @@ class EquipmentsController extends Application
     {
         if($key == "all")
         {
-            $this->load->model('AssetsCsv');
             $items = $this->AssetsCsv->all();
+            header("Content-type: application/json");
+            echo json_encode($items);
+            return;
+        }
+        if($key == "slots")
+        {
+            $this->load->model('SlotsCsv');
+            $items = $this->SlotsCsv->all();
             header("Content-type: application/json");
             echo json_encode($items);
             return;
@@ -49,5 +56,12 @@ class EquipmentsController extends Application
         $items = $this->AssetsCsv->some('category', $key);
         $this->data['items'] = $items;
         $this->render();
+    }
+
+    public function singleItem($key)
+    {
+        $item = $this->AssetsCsv->some('id', $key);
+        header("Content-type: application/json");
+        echo json_encode($item);
     }
 }

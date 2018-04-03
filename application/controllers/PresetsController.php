@@ -4,10 +4,10 @@
  
  class PresetsController extends Application
  {
-        function __construct()
+    function __construct()
 	{
-            parent::__construct();
-            $this->load->model('PresetsCsv');
+        parent::__construct();
+        $this->load->model('PresetsCsv');
 	}
  	/**
  	 * Index Page for this controller.
@@ -23,11 +23,29 @@
  	 */
  	public function index()
  	{
-            $this->data['pagetitle'] = 'Equipments presets';
-            $this->data['pagebody'] = 'presets';
-                
-            $parts = $this->PresetsCsv->all();
-            $this->data['parts'] = $parts;
-            $this->render();
+        $this->data['pagetitle'] = 'Equipments presets';
+        $this->data['pagebody'] = 'presets';
+            
+        $parts = $this->PresetsCsv->all();
+        $this->data['parts'] = $parts;
+        $this->render();
  	}
+
+    public function category($key)
+    {
+        if($key == "all")
+        {
+            $presets = $this->PresetsCsv->all();
+            header("Content-type: application/json");
+            echo json_encode($items);
+            return;            
+        }
+        else
+        {
+            $presets = $this->PresetsCsv->some('id', $key);
+            header("Content-type: application/json");
+            echo json_encode($presets);
+            return;            
+        }
+    }
  }
