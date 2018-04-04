@@ -40,7 +40,15 @@
             echo json_encode($items);
             return;            
         }
-        else
+        else if ($key == "update")
+        {
+            $this->update();            
+        }
+        else if ($key == "create")
+        {
+            $this->create();            
+        }
+        else 
         {
             $presets = $this->PresetsCsv->some('id', $key);
             header("Content-type: application/json");
@@ -48,4 +56,52 @@
             return;            
         }
     }
+
+    private function update()
+    {
+        // echo var_dump($_POST);
+        $preset = array();
+        $preset['id'] = $_POST['id']; 
+        $preset['name'] = $_POST['name'];
+        $preset['helmet'] = ($_POST['helmet'] == "") ? "." : $_POST['helmet'] ;
+        $preset['chest'] = ($_POST['chest'] == "") ? "." : $_POST['chest'];
+        $preset['weapon_left'] = ($_POST['weapon_left'] == "") ? "." : $_POST['weapon_left'];
+        $preset['weapon_right'] = ($_POST['weapon_right'] == "") ? "." :  $_POST['weapon_right'];
+        $preset['ring_left'] = ($_POST['ring_left'] == "") ? "." : $_POST['ring_left'];
+        $preset['ring_right'] = ($_POST['ring_right'] == "") ? "." : $_POST['ring_right'];
+        $preset['amulet'] = ($_POST['amulet'] == "") ? "." : $_POST['amulet'];
+        $preset['belt'] = ($_POST['belt'] == "") ? "." : $_POST['belt'];
+        $preset['boot'] = ($_POST['boot'] == "") ? "." : $_POST['boot'];
+        $preset['glove'] = ($_POST['glove'] == "") ? "." : $_POST['glove'];
+
+        $this->PresetsCsv->update($preset);
+        echo "Preset '".$_POST['name']."' updated!";
+    }
+
+    private function create()
+    {
+        if ($_POST['name'] == "")
+        {
+            echo "Failed: Can't create new preset with empty name!";
+            return;
+        }
+
+        $preset = array();
+        $preset['id'] = $_POST['id']; 
+        $preset['name'] = $_POST['name'];
+        $preset['helmet'] = ($_POST['helmet'] == "") ? "." : $_POST['helmet'] ;
+        $preset['chest'] = ($_POST['chest'] == "") ? "." : $_POST['chest'];
+        $preset['weapon_left'] = ($_POST['weapon_left'] == "") ? "." : $_POST['weapon_left'];
+        $preset['weapon_right'] = ($_POST['weapon_right'] == "") ? "." :  $_POST['weapon_right'];
+        $preset['ring_left'] = ($_POST['ring_left'] == "") ? "." : $_POST['ring_left'];
+        $preset['ring_right'] = ($_POST['ring_right'] == "") ? "." : $_POST['ring_right'];
+        $preset['amulet'] = ($_POST['amulet'] == "") ? "." : $_POST['amulet'];
+        $preset['belt'] = ($_POST['belt'] == "") ? "." : $_POST['belt'];
+        $preset['boot'] = ($_POST['boot'] == "") ? "." : $_POST['boot'];
+        $preset['glove'] = ($_POST['glove'] == "") ? "." : $_POST['glove'];
+
+        $this->PresetsCsv->add($preset);
+        echo "New preset '".$_POST['name']."' created!";
+    }
+
  }

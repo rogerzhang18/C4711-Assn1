@@ -32,6 +32,12 @@ class EquipmentsController extends Application
         $this->data['page_category'] = " all-equipments";        
         $items = $this->AssetsCsv->all();
         $this->data['items'] = $items;
+
+        $role = $this->session->userdata('userrole');
+        if ($role == "")
+            $role = "User Role";
+        $this->data['userrole'] = $role;
+
         $this->render();
     }
         
@@ -40,14 +46,6 @@ class EquipmentsController extends Application
         if($key == "all")
         {
             $items = $this->AssetsCsv->all();
-            header("Content-type: application/json");
-            echo json_encode($items);
-            return;
-        }
-        if($key == "slots")
-        {
-            $this->load->model('SlotsCsv');
-            $items = $this->SlotsCsv->all();
             header("Content-type: application/json");
             echo json_encode($items);
             return;
