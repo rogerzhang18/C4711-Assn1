@@ -8,6 +8,18 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+## [0.0.12] - 2018-04-04
+### Added
+- roles, can now toggle between guest, owner, & logged out mode
+- added preset editor that appears in owner mode, allows updating & creating new presets
+
+### Changed
+- biggest update since the images became draggable
+- clicking update preset will update preset name(only if user entered something into the field) and any different items
+of the selected preset in the drop down
+- presets can now have empty slots(can even have no items at all)
+- cannot create presets with no names 
+
 ## [0.0.11] - 2018-03-24
 ### Added
 - items.json, unused since EquipmentController can parse a json version from the csv models
@@ -17,6 +29,9 @@ Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdo
 - homepage no longer has hard-coded inventory, now dynamically loads using a json-fied version of csv models from 
 EquipmentController.php
 - fixed some styling issues with inventory 
+
+^Assignment2
+vAssignment1
 
 ## [0.0.10] - 2018-03-23
 ### Added
