@@ -8,6 +8,13 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
+## [0.0.13] - 2018-04-04
+### Added
+- js and css for homepage
+
+### Changed
+- Separated and format on homepage.php
+
 ## [0.0.12] - 2018-04-04
 ### Added
 - roles, can now toggle between guest, owner, & logged out mode
