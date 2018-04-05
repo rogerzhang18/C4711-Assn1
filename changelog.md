@@ -8,12 +8,22 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
-## [0.0.13] - 2018-04-05
+## [0.0.14] - 2018-04-05
 ### Added
 - Added Accessories entity model for unit testing on valid attributes of each accessory
 - Added AccessoriesTest model to run the test
 - Added Composer and PHPUnit for unit test to project root
-- Added code coverage in PHPUnit configuration file for this project 
+- Added code coverage in PHPUnit configuration file for this project
+
+### Changed
+- Added to .gitignore to ignore anything in the vendor folder, composer.lock, tests/coverage
+
+## [0.0.13] - 2018-04-05
+### Added
+- js and css for homepage
+
+### Changed
+- Separated and format on homepage.php
 
 ## [0.0.12] - 2018-04-04
 ### Added
