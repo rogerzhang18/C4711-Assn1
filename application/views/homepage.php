@@ -2,6 +2,7 @@
 var str = 0;	
 var dex = 0;	
 var int = 0;	
+
 function drag(target, event) {
     event.dataTransfer.setData("itemID", target.id);
     event.dataTransfer.setData("itemCategory", target.getAttribute("data-category"));
@@ -49,9 +50,70 @@ function updateStats() {
 	intField.innerHTML = int;
 }
 
-/* The old presets function, now removed. */
-function replaceImage(e) {
-    
+function fillEmptySlot(slotID)
+{
+	// do a lookup of slotID to slot img
+	$.getJSON("slots/" + slotID, function(data){
+		var slot = data[0];
+
+		var emptySlot = document.createElement("img");
+	    emptySlot.setAttribute("id", slot.id);
+		emptySlot.setAttribute("src", "./assets/img/" + slot.name + ".png");
+		emptySlot.setAttribute("alt", "");
+		emptySlot.setAttribute("data-str", 0);
+		emptySlot.setAttribute("data-dex", 0);
+		emptySlot.setAttribute("data-int", 0);
+
+		var oldItemRoot = document.querySelector("." + slotID);
+		var oldItem = oldItemRoot.firstElementChild;
+	    str -= parseInt(oldItem.getAttribute("data-str"));
+	    dex -= parseInt(oldItem.getAttribute("data-dex"));
+	    int -= parseInt(oldItem.getAttribute("data-int"));
+	    oldItemRoot.innerHTML = "";
+		oldItemRoot.appendChild(emptySlot);
+	    updateStats();
+	});
+}
+
+function changePreset() {
+    var presetDropdown = document.getElementById("presetDropdown");
+	var presetId = presetDropdown.options[presetDropdown.selectedIndex].id;
+	$.getJSON("presets/" + presetId, function(data){
+		var items = {};
+        $.each(data[0], function(key, val)
+        {        	
+			if (key != "id" && key != "name" && val != ".")
+				items[key] = val;
+			if (val == ".")
+				fillEmptySlot(key);
+        });
+        $.each( items, function( key, val ) {
+			$.getJSON("singleItem/" + val, function(itemData){
+				var item = itemData[0];
+				// apparently jQuery can see key var even tho not passed in here
+				var oldItemRoot = document.querySelector("." + key);
+				var oldItem = oldItemRoot.firstElementChild;
+			    str -= parseInt(oldItem.getAttribute("data-str"));
+			    dex -= parseInt(oldItem.getAttribute("data-dex"));
+			    int -= parseInt(oldItem.getAttribute("data-int"));
+			    oldItemRoot.innerHTML = "";
+			    
+				var newItem = document.createElement("img");
+			    newItem.setAttribute("id", key);
+				newItem.setAttribute("src", "./assets/img/" + item.id + ".png");
+				newItem.setAttribute("alt", item.id);
+				newItem.setAttribute("data-str", item.str);
+				newItem.setAttribute("data-dex", item.dex);
+				newItem.setAttribute("data-int", item.int);
+
+			    str += parseInt(newItem.getAttribute("data-str"));
+			    dex += parseInt(newItem.getAttribute("data-dex"));
+			    int += parseInt(newItem.getAttribute("data-int"));
+			    oldItemRoot.appendChild(newItem);
+			    updateStats();
+			});
+		});
+    });
 }
 
 /* Load/Unloads the homepage inventory. */
@@ -61,20 +123,21 @@ function openInventoryTab(event, tabName) {
 
     // Get all elements with class="tabContent" and hide them
     tabContent = document.getElementsByClassName("tabContent");
-    for (var i = 0; i < tabContent.length; i++) {
+    for (var i = 0; i < tabContent.length; i++)
         tabContent[i].style.display = "none";
-    }
 
     tabButton = document.getElementsByClassName("tabButton");
-    for (var i = 0; i < tabButton.length; i++) {
+    for (var i = 0; i < tabButton.length; i++)
         tabButton[i].className = tabButton[i].className.replace(" active", "");
-    }
 
     document.getElementById(tabName).style.display = "block";
     event.currentTarget.className += " active";
 }
 
 $().ready(function() {
+	//dropdown is already populated in php
+
+	//populate inv
 	$.ajax({
 		url: "/category/all",
 		dataType: 'json',
@@ -82,11 +145,12 @@ $().ready(function() {
 			console.log( 'ERROR: ', data );
 		},
 		success: function( data ) {
-			console.log( 'SUCCESS: ' );
+			console.log( 'SUCCESS INV: ' );
 			$.each( data, function( key, val ) {
 				var item = document.createElement("img");
 				item.setAttribute("id", val.id);
 				item.setAttribute("src", "./assets/img/" + val.id + ".png");
+				item.setAttribute("alt", val.id);
 				item.setAttribute("draggable", "true");
 				item.setAttribute("ondragstart", "drag(this, event)");
 				item.setAttribute("data-category", val.category);
@@ -100,7 +164,105 @@ $().ready(function() {
 			});
 		}
 	});
+
+	//populate placeholder slots
+	$.ajax({
+		url: "/slots/all",
+		dataType: 'json',
+		error: function( data ) {
+			console.log( 'ERROR: ', data );
+		},
+		success: function( data ) {
+			console.log( 'SUCCESS SLOTS: ' );
+			$.each( data, function( key, val ) {
+				var slot = document.createElement("div");
+				slot.setAttribute("class", val.id);
+				slot.setAttribute("data-category", val.category);
+				slot.setAttribute("ondrop", "drop(this, event)");
+				slot.setAttribute("ondragenter", "return false");
+				slot.setAttribute("ondragover", "return false");
+
+				var placeholderItem = document.createElement("img");
+				placeholderItem.setAttribute("id", val.id);
+				placeholderItem.setAttribute("src", "./assets/img/" + val.name + ".png");
+				placeholderItem.setAttribute("data-str", val.str);
+				placeholderItem.setAttribute("data-dex", val.dex);
+				placeholderItem.setAttribute("data-int", val.int);
+
+				slot.appendChild(placeholderItem);		
+				var appendImageRoot = document.getElementById("slots");
+				appendImageRoot.appendChild(slot);
+			});
+		}
+	});
 });
+
+function updatePreset() 
+{
+	var helmetID = document.getElementById("helmet").alt;
+	var chestID = document.getElementById("chest").alt;
+	var gloveID = document.getElementById("glove").alt;
+	var bootID = document.getElementById("boot").alt;
+	var beltID = document.getElementById("belt").alt;
+	var amuletID = document.getElementById("amulet").alt;
+	var ringLeftID = document.getElementById("ring_left").alt;
+	var ringRightID = document.getElementById("ring_left").alt;
+	var weaponLeftID = document.getElementById("weapon_left").alt;
+	var weaponRightID = document.getElementById("weapon_right").alt;
+	var presetDropdown = document.getElementById("presetDropdown");
+	var presetID = presetDropdown.options[presetDropdown.selectedIndex].id;
+	var presetName = document.getElementById("newPresetName").value;
+	if (presetName == "")
+		presetName = presetDropdown.options[presetDropdown.selectedIndex].value;
+
+	$.ajax({
+        type: "POST",
+        url: "/presets/update",
+	    data : { id : presetID, name : presetName, helmet : helmetID, chest : chestID, glove : gloveID, boot : bootID, belt : beltID,  amulet : amuletID, ring_left : ringLeftID, ring_right: ringRightID, weapon_left : weaponLeftID, weapon_right : weaponRightID 
+		},
+        success: function (result) {
+        	alert(result);
+        	location.reload(); //preset list need to update
+        }
+	});
+}
+
+function createPreset() 
+{
+	var presetName = document.getElementById("newPresetName").value;
+	//also checked on server side if client does something goofy
+	if (presetName == "")
+	{
+		alert("Need a name for your new preset!")
+		return;
+	}
+	var helmetID = document.getElementById("helmet").alt;
+	var chestID = document.getElementById("chest").alt;
+	var gloveID = document.getElementById("glove").alt;
+	var bootID = document.getElementById("boot").alt;
+	var beltID = document.getElementById("belt").alt;
+	var amuletID = document.getElementById("amulet").alt;
+	var ringLeftID = document.getElementById("ring_left").alt;
+	var ringRightID = document.getElementById("ring_left").alt;
+	var weaponLeftID = document.getElementById("weapon_left").alt;
+	var weaponRightID = document.getElementById("weapon_right").alt;
+	var newIndex = document.getElementById("presetDropdown").options.length; //length == 1 after last index
+	var newPresetID = "pre" + newIndex;
+	
+	$.ajax({
+        type: "POST",
+        url: "/presets/create",
+	    data : { id : newPresetID, name : presetName, helmet : helmetID, chest : chestID, glove : gloveID, boot : bootID, belt : beltID,  amulet : amuletID, ring_left : ringLeftID, ring_right: ringRightID, weapon_left : weaponLeftID, weapon_right : weaponRightID 
+		},
+		error: function( data ) {
+			console.log( 'ERROR: ', data );
+		},
+        success: function (result) {
+        	alert(result);
+        	location.reload(); //preset list need to update
+        }
+	});
+}
 
 </script>
 <style type="text/css">
@@ -171,7 +333,7 @@ $().ready(function() {
 
 	#inventoryBox {
 		position: absolute;
-		top: 10px;
+		top: 80px;
 		left: 600px;
 		min-width: 51%; 
 
@@ -190,8 +352,8 @@ $().ready(function() {
 	    float: left;
 	    cursor: pointer;
 	    padding: 14px 7px;
-	    /*transition: 0.3s;*/
 	}
+
 
 	.tabContent {
 	    display: none;
@@ -201,8 +363,7 @@ $().ready(function() {
 		position: absolute;
 		top: 220px;
 		left: 780px;
-		max-width: 25%; 
-		/*max-width: 30%; */
+		max-width: 20%; 
 
 		border-style: double;
 		border-radius: 5px;
@@ -210,68 +371,72 @@ $().ready(function() {
 		border-color: black;
 		text-align: center;
 	}
+
+	#statsBox td {
+		padding-left: 7px;	
+		padding-right: 7px;
+		max-width: 85px;
+	}
+
+	#savingControls {
+		position: absolute;
+		top: 220px;
+		left: 1025px;
+		max-width: 18%; 
+
+		border-style: double;
+		border-radius: 5px;
+		border-width: 5px;
+		border-color: black;
+		text-align: left;
+	}
+
+	#savingControls button {
+		background-color: inherit;
+	    float: left;
+	    cursor: pointer;
+	    max-width: 90px;
+	}
+
+	#savingControls div {
+	    background-color: inherit;
+	    margin-left: 5px;
+	    margin-bottom: 10px;
+	}
+
 </style>
 <div class="POE_main">
 	
-		<h1 id="homepage-title">Welcome to Path of Exile custom mod!</h1>
+		<h1 id="homepage-title">Welcome to Path of Exile Inventory Simulator!</h1>
 		<div class="homepage-content">
             <div id="preset-dropdown">
-            <select class="round" name="preset-dropdown" onchange="replaceImage(this);">
-                {parts}
-                  <option value={name}>{name}</option>
-                {/parts}
+            <select id="presetDropdown" class="round" onchange="changePreset();">
+                {presets}
+                  <option id={id} value={name}>{name}</option>
+                {/presets}
             </select>
-            </div>
+        	</div>
 			<div id="statsBox">
-				<div class="container">
-					<div class="row">					
-					<h3 class="col-sm-1">Stats</h3 >
-					</div>
-					<div class="row">					
-					<p class="col-sm-1">Strength</p>
-					<p class="col-sm-1">Dexterity</p>
-					<p class="col-sm-1">Intelligence</p>
-					</div>
-					<div class="row">					
-					<p id="strField" class="col-sm-1">0</p>
-					<p id="dexField" class="col-sm-1">0</p>
-					<p id="intField" class="col-sm-1">0</p>
-					</div>
-				</div>
+				<table>
+					<tr>					
+						<h3>Stats</h3 >
+					</tr>
+					<tr>					
+						<td>Strength</td>
+						<td>Dexterity</td>
+						<td>Intelligence</td>
+					</tr>
+					<tr>					
+						<td id="strField">0</td>	
+						<td id="dexField">0</td>
+						<td id="intField">0</td>
+					</tr>
+				</table>
 			</div>	
+		    {savingcontrols}
             <div class="imageWrapper">
-            	
         		<img id="base-image" src="./assets/img/background.png" />
-				<div class="chest" data-category="chest" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="chest" src="./assets/img/chest_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="helmet" data-category="helmet" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="helmet" src="./assets/img/helmet_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="glove" data-category="glove" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="glove" src="./assets/img/helmet_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="boot" data-category="boot" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="boot" src="./assets/img/helmet_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="ring_left" data-category="ring" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="ring_left" src="./assets/img/ring_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="ring_right" data-category="ring" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="ring_right" src="./assets/img/ring_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="amulet" data-category="amulet" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="amulet" src="./assets/img/ring_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="belt" data-category="belt" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="belt" src="./assets/img/belt_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="weapon_left" data-category="weapon" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="weapon_left" src="./assets/img/weapon_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
-				<div class="weapon_right" data-category="weapon" ondrop="drop(this, event)" ondragenter="return false" ondragover="return false" >
-					<img id="weapon_right" src="./assets/img/weapon_slot.png" data-str="0" data-dex="0" data-int="0">
-				</div>	
+        		<div id="slots"/>
 	            <div id="inventoryBox" >
 	            	<h3>Inventory</h3>
 	            	<hr>
