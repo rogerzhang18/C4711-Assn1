@@ -18,7 +18,9 @@ class AccessoriesTest extends TestCase
             $this->item->int = 0;
     }
 
-    // test setup for id, name, category, str, dex and int
+    /*
+     * Test setup for id, name, category, str, dex and int
+     */
     function testSetup()
     {
             $this->assertEquals(1, $this->item->id);
@@ -29,6 +31,9 @@ class AccessoriesTest extends TestCase
             $this->assertEquals(0, $this->item->int);
     }
 
+    /*
+     * Test for valid ID (can be anything)
+     */
     function testValidId()
     {
 		$expected = 123;
@@ -36,7 +41,7 @@ class AccessoriesTest extends TestCase
 		$this->assertEquals($expected, $this->item->id);
     }
 
-    /**
+    /*
      * This is an alternate way to assert that an exception should occur
      * @expectedException InvalidArgumentException
      */
@@ -46,6 +51,9 @@ class AccessoriesTest extends TestCase
 		$this->item->id = null;
     }
 
+    /*
+     * Test for valid name (can be anything)
+     */
     function testNamePresent() 
     {
 		$expected = "sword";
@@ -53,6 +61,9 @@ class AccessoriesTest extends TestCase
 		$this->assertEquals($expected, $this->item->name);
     }
 
+    /*
+     * Test for empty name
+     */
     function testNameAbsent() 
     {
 		$badvalue = "";
@@ -60,6 +71,9 @@ class AccessoriesTest extends TestCase
 		$this->item->name = $badvalue;
     }
 
+    /*
+     * Test for invalid name (longer that 30 characters)
+     */
     function testNameTooLong() 
     {
 		$badvalue = "This is a very long string that will fail the name test.";
@@ -67,6 +81,9 @@ class AccessoriesTest extends TestCase
 		$this->item->name = $badvalue;
     }
 
+    /*
+     * Test for valid category (must be one of the predefined category)
+     */
     function testValidCategory() 
     {
         $expected = "amulet";
@@ -74,6 +91,9 @@ class AccessoriesTest extends TestCase
         $this->assertEquals($expected, $this->item->category);
     }
 
+    /*
+     * Test for invalid category (any category other than predefined ones)
+     */
     function testInvalidCategory() 
     {
         $badvalue = "wrongcategory";
@@ -81,6 +101,9 @@ class AccessoriesTest extends TestCase
         $this->item->category = $badvalue;
     }
 
+    /*
+     * Test for empty category
+     */
     function testCategoryAbsent() 
     {
         $badvalue = "";
@@ -88,6 +111,9 @@ class AccessoriesTest extends TestCase
         $this->item->category = $badvalue;
     }
 
+    /*
+     * Test for valid str value (must be an int)
+     */
     function testValidStr() 
     {
         $expected = 10;
@@ -95,6 +121,9 @@ class AccessoriesTest extends TestCase
         $this->assertEquals($expected, $this->item->str);
     }
 
+    /*
+     * Test for negative str value
+     */
     function testNegativeStr() 
     {
         $badvalue = -1;
@@ -102,6 +131,19 @@ class AccessoriesTest extends TestCase
         $this->item->str = $badvalue;
     }
 
+    /*
+     * Test for invalid str value (not an integer)
+     */
+    function testInvalidStr() 
+    {
+        $badvalue = "10";
+        $this->expectException(Exception::class);
+        $this->item->str = $badvalue;
+    }
+
+    /*
+     * Test for valid dex value (must be an int)
+     */
     function testValidDex() 
     {
         $expected = 10;
@@ -109,13 +151,29 @@ class AccessoriesTest extends TestCase
         $this->assertEquals($expected, $this->item->dex);
     }
 
+    /*
+     * Test for negative dex value
+     */
     function testNegativeDex() 
     {
         $badvalue = -1;
         $this->expectException(Exception::class);
         $this->item->dex = $badvalue;
     }
+
+    /*
+     * Test for invalid dex value (not an integer)
+     */
+    function testInvalidDex() 
+    {
+        $badvalue = "10";
+        $this->expectException(Exception::class);
+        $this->item->dex = $badvalue;
+    }
     
+    /*
+     * Test for valid int value (must be an int)
+     */
     function testValidInt() 
     {
         $expected = 10;
@@ -123,9 +181,22 @@ class AccessoriesTest extends TestCase
         $this->assertEquals($expected, $this->item->int);
     }
 
+    /*
+     * Test for negative int value
+     */
     function testNegativeInt() 
     {
         $badvalue = -1;
+        $this->expectException(Exception::class);
+        $this->item->int = $badvalue;
+    }
+
+    /*
+     * Test for invalid int value (not an integer)
+     */
+    function testInvalidInt() 
+    {
+        $badvalue = "10";
         $this->expectException(Exception::class);
         $this->item->int = $badvalue;
     }
