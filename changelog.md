@@ -10,6 +10,16 @@ Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdo
 
 ## [0.0.14] - 2018-04-05
 ### Added
+- Added changing item info in EquipmentsController & assembly
+- Added updating item info in csv 
+
+### Changed
+- Changed owner mode to user & admin modes
+- preset edit box now appears to user & admins
+- equipments page is now form instead of static text
+
+## [0.0.14] - 2018-04-05
+### Added
 - Added Accessories entity model for unit testing on valid attributes of each accessory
 - Added AccessoriesTest model to run the test
 - Added Composer and PHPUnit for unit test to project root
