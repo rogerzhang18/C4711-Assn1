@@ -146,6 +146,7 @@ $().ready(function() {
 		success: function( data ) {
 			console.log( 'SUCCESS INV: ' );
 			$.each( data, function( key, val ) {
+
 				var item = document.createElement("img");
 				item.setAttribute("id", val.id);
 				item.setAttribute("src", "./assets/img/" + val.id + ".png");

@@ -12,8 +12,28 @@ class EquipmentsController extends Application
     {
         parent::__construct();
         $this->load->model('AssetsCsv');
+        $items = json_decode(json_encode($this->AssetsCsv->all()), true);
+        $this->categories = array();
+        foreach ($items as $item) {
+            if (!in_array($item["category"], $this->categories))
+                $this->categories[] = $item["category"];
+        }
         $this->data['pagetitle'] = 'Equipments build';
         $this->data['pagebody'] = 'assembly';
+        $role = $this->session->userdata('userrole');
+        if ($role == "")
+            $role = "User Role";
+        $this->data['userrole'] = $role;
+        if ($role == ROLE_ADMIN)
+        {
+            $this->data['adminWarning'] = "<b>Change item categories at your own risk! CSS on main page will be messed up!</b>";
+            $this->data['saveButton'] = '<input type="submit" value="Save Changes"/>';
+        }
+        else
+        {
+            $this->data['adminWarning'] = "Changes are only saved as admin.";
+            $this->data['saveButton'] = '';
+        }
 	  }
  	/**
  	 * Index Page for this controller.
@@ -29,15 +49,9 @@ class EquipmentsController extends Application
  	 */
  	public function index()
  	{
-        $this->data['page_category'] = " all-equipments";        
+        $this->data['page_category'] = "all-equipments";        
         $items = $this->AssetsCsv->all();
         $this->data['items'] = $items;
-
-        $role = $this->session->userdata('userrole');
-        if ($role == "")
-            $role = "User Role";
-        $this->data['userrole'] = $role;
-
         $this->render();
     }
         
@@ -48,6 +62,12 @@ class EquipmentsController extends Application
             $items = $this->AssetsCsv->all();
             header("Content-type: application/json");
             echo json_encode($items);
+            return;
+        }
+        if($key == "FillCategories")
+        {
+            $allCategories = $this->categories;
+            echo json_encode($allCategories);
             return;
         }
         $this->data['page_category'] = " ".$key;        
@@ -61,5 +81,21 @@ class EquipmentsController extends Application
         $item = $this->AssetsCsv->some('id', $key);
         header("Content-type: application/json");
         echo json_encode($item);
+    }
+
+    public function requestItemUpdate()
+    {
+        for ($i = 0; $i < count($_POST['id']); $i++)
+        {
+            $item = array(); 
+            $item['id'] = $_POST['id'][$i];
+            $item['name'] = $_POST['name'][$i];
+            $item['category'] = $_POST['category'][$i];
+            $item['str'] = $_POST['str'][$i];
+            $item['dex'] = $_POST['dex'][$i];
+            $item['int'] = $_POST['int'][$i];
+            $this->AssetsCsv->update($item);           
+        }
+        redirect($_SERVER['HTTP_REFERER']);
     }
 }
