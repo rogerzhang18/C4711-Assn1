@@ -8,7 +8,12 @@ Team membership:
 Team conventions: Allman notation, markdown for changelog  
 Changelog format: [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) 
 
-## [0.0.14] - 2018-04-05
+## [0.0.16] - 2018-04-06
+### Added
+- Added tooltips of item info as tooltip/title tag on homepage, doesn't need it on equipment page
+- Added tooltips of names of empty slots as their category name as tooltip/title tag on homepage
+
+## [0.0.15] - 2018-04-05
 ### Added
 - Added changing item info in EquipmentsController & assembly
 - Added updating item info in csv 
