@@ -62,6 +62,7 @@ function fillEmptySlot(slotID)
 		emptySlot.setAttribute("data-str", 0);
 		emptySlot.setAttribute("data-dex", 0);
 		emptySlot.setAttribute("data-int", 0);
+		emptySlot.setAttribute("title", slot.category);
 
 		var oldItemRoot = document.querySelector("." + slotID);
 		var oldItem = oldItemRoot.firstElementChild;
@@ -158,6 +159,7 @@ $().ready(function() {
 				item.setAttribute("data-dex", val.dex);
 				item.setAttribute("data-int", val.int);
 
+				item.setAttribute("title", val.name + "\nCategory: " + val.category + "\nStr: " + val.str + "\nDex: " + val.dex + "\nInt: " + val.int);
 				var tabName = val.category + "Tab";
 				var tab = document.getElementById(tabName);
 				tab.appendChild(item);		
@@ -188,6 +190,7 @@ $().ready(function() {
 				placeholderItem.setAttribute("data-str", val.str);
 				placeholderItem.setAttribute("data-dex", val.dex);
 				placeholderItem.setAttribute("data-int", val.int);
+				placeholderItem.setAttribute("title", val.category)
 
 				slot.appendChild(placeholderItem);		
 				var appendImageRoot = document.getElementById("slots");
