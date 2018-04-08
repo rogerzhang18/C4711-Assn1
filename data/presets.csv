@@ -1,0 +1,7 @@
+id,name,helmet,chest,weapon_left,weapon_right,ring_left,ring_right,amulet,belt,boot,glove
+pre0,Templar,helmet_1,chest_3,weapon_10,weapon_8,ring_0,ring_0,amulet_2,belt_0,boot_0,glove_1
+pre1,Necromancer,helmet_3,chest_1,weapon_9,weapon_9,.,.,amulet_0,belt_3,boot_1,.
+pre2,Assassin,helmet_0,chest_2,weapon_1,weapon_0,ring_1,ring_1,amulet_1,belt_1,.,glove_3
+pre3,test,helmet_0,chest_1,.,weapon_1,ring_2,ring_2,.,belt_2,.,.
+pre4,mr.skeltal,helmet_3,chest_1,weapon_9,weapon_9,.,.,amulet_0,belt_4,boot_1,.
+pre5,"tabula completely rasa",.,.,.,.,.,.,.,.,.,.

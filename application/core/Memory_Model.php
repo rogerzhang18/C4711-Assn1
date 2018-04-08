@@ -218,7 +218,7 @@ class Memory_Model extends Entity implements DataMapper
 	{
 		$results = array();
 		foreach ($this->_data as $key => $record)
-			if ($record[$what] == $which)
+			if ($record->$what == $which)
 				$results[] = $record;
 		return $results;
 	}
@@ -233,7 +233,7 @@ class Memory_Model extends Entity implements DataMapper
 	// Retrieve first record from a table.
 	function first()
 	{
-		return $this->_data[0];
+		return array_values($this->_data)[0];
 	}
 
 	// Retrieve records from the beginning of a table.
