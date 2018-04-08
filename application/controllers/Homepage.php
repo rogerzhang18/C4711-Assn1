@@ -24,9 +24,23 @@ class Homepage extends Application
     {
         $this->data['pagetitle'] = 'Path of Exile - Home';
         $this->data['pagebody'] = 'homepage';
+        $role = $this->session->userdata('userrole');
+        // dropdown used as indicator of current role
+        if ($role == "")
+            $role = "User Role";
+        $this->data['userrole'] = $role;
 
-        $parts = $this->PresetsCsv->all();
-        $this->data['parts'] = $parts;
+        if ($role == ROLE_GUEST || $role == "User Role")
+        {
+            $this->data['savingcontrols'] = '';
+        }
+        else 
+        {
+            $this->data['savingcontrols'] = $this->parser->parse('savingcontrols',[], true);
+        }
+
+        $presets = $this->PresetsCsv->all();
+        $this->data['presets'] = $presets;
         $this->render(); 
     }
 }
